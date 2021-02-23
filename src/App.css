@@ -3,6 +3,7 @@
 }
 
 .App-logo {
+  margin-top: 150px;
   height: 40vmin;
   pointer-events: none;
 }
@@ -36,3 +37,167 @@
     transform: rotate(360deg);
   }
 }
+
+/************************************* clock **********************************************/
+
+
+.clock {
+  display: flex;
+  color:#fff;
+  background-color:rgb(37, 37, 37);
+  top:10%;
+  left: 50%;
+  transform:translateX(-50%);
+  width:200px;
+  height:100px;
+  align-items:center;
+  justify-content: center;
+  transition: 0.3s all ease;
+  position:absolute;
+  overflow:hidden;
+  box-sizing:border-box;
+  box-shadow: 0 0 30px 5px #fff;
+  cursor:pointer;
+}
+
+.clock:hover {
+  color:#000;
+  background-color:#fff;
+}
+.actv {
+  color:#000;
+  background-color:#fff;
+}
+
+.clock span{
+  position: absolute;
+  top:0;
+  left:-50%;
+  width:100%;
+  height:100%;
+  display:block; 
+  box-sizing:border-box;
+}
+.clock:hover span:nth-child(1){ transform: rotate(0deg); }
+.clock:hover span:nth-child(2){ transform: rotate(90deg); top:-50%; left:25%;}
+.clock:hover span:nth-child(3){ transform: rotate(180deg); left:50%;}
+.clock:hover span:nth-child(4){ transform: rotate(270deg); top:50%; left:-25%;}
+.actv span:nth-child(1){ transform: rotate(0deg); }
+.actv span:nth-child(2){ transform: rotate(90deg); top:-50%; left:25%;}
+.actv span:nth-child(3){ transform: rotate(180deg); left:50%;}
+.actv span:nth-child(4){ transform: rotate(270deg); top:50%; left:-25%;}
+
+.clock:hover span:before {
+  content: '';
+  position: absolute;
+  width:100%;
+  height:3%;
+  background-color:cornflowerblue;
+  animation: animate 4s linear infinite;
+}
+.actv span:before {
+  content: '';
+  position: absolute;
+  width:100%;
+  height:3%;
+  background-color:cornflowerblue;
+  animation: animate 4s linear infinite;
+}
+
+.clock:hover span:nth-child(2):before { animation-delay: -2s; }
+.clock:hover span:nth-child(4):before { animation-delay: -2s; }
+.actv span:nth-child(2):before { animation-delay: -2s; }
+.actv span:nth-child(4):before { animation-delay: -2s; }
+
+@keyframes animate{
+  0%{
+    transform: scaleX(0);
+    transform-origin:left;
+  }
+  50%{
+    transform: scaleX(1);
+    transform-origin:left;
+  }
+  50.1%{
+    transform: scaleX(1);
+    transform-origin:right;
+  }
+  100%{
+    transform: scaleX(0);
+    transform-origin:right;
+  }
+}
+
+
+/************************************* login **********************************************/
+
+.login-container { 
+  display: flex;
+  width: 400px;
+  height:250px;
+  border-radius:10px;
+  background-color: #fff;
+  box-shadow: 0 0 30px 5px #fff;
+  justify-content: center;
+  align-items:center;
+}
+.login-container > div {display: flex; justify-content: center; align-items: center; flex-direction:column; width: 100%; height:100%;}
+.input-fields { width: 100%; height: 70%; }
+.input-fields > div { 
+  width: 100%;  
+}
+
+
+.input-fields input {
+  width: 80%;
+  height: 30px;
+  border-radius:30px;
+  border:none;
+  background-color:rgba(100, 149, 237, 0.3);
+  color:#000;
+  outline:none;
+  transition: 0.5s all ease;
+}
+.input-fields input:focus {
+  box-shadow:0 0 5px 2px cornflowerblue;
+  background-color: rgba(100, 149, 237, 0.4);
+}
+.input-fields span{
+  display:block;
+  color:#000;
+}
+
+.btn {
+  font-size:25px;
+  font-weight: 600;
+  padding: 10px 15px;
+  margin: 0 10px;
+  outline:none;
+  border:none;
+  border-radius:10px;
+  background-color: rgba(100, 149, 237, 0.3);
+  cursor: pointer;
+  transition: 0.2s all ease;
+}
+
+.btn:hover {
+  background-color: rgba(100, 149, 237, 0.6);
+  color:#fff;
+}
+
+/************************************* userinfo **********************************************/
+
+.info {
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  width:90%;
+  height:90%;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.info h1 { color:#000; font-size: 25px; margin:0; }
+.info h2 { color:#000; font-size: 15px; margin-bottom: 5px; }
+
+.info .profile-img { width:100px; height:100px; }
