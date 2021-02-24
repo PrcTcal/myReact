@@ -38,6 +38,31 @@
   }
 }
 
+/************************************* pages **********************************************/
+
+.br { margin-top: 20px; }
+
+/************************************* components **********************************************/
+
+.menu { margin: 0 0 40px 0; }
+.menu ul {
+  list-style: none;
+}
+.menu ul li {
+  background-color: #fff;
+  box-shadow: 0 0 30px 5px #fff;
+  margin: 0 10px;
+  padding: 5px;
+  float: left;
+  border-radius: 7px;
+  transition: 0.3s all ease;
+}
+.menu ul li:hover{ padding: 10px; }
+.menu ul li:active{ padding: 8px; }
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; color:#000;}
+
 /************************************* clock **********************************************/
 
 

@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from './client/Root';
 import './index.css';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/*
+  초기버전
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+  document.getElementById('root')
+);
+*/
+
+ReactDOM.render(
+  <Root />,
   document.getElementById('root')
 );
 

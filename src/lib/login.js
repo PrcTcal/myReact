@@ -6,7 +6,7 @@ function Login(props){
     const pw = useRef();
 
     const handleLogin = e => {
-        if(e.key === 'Enter'){
+        if(e.key === 'Enter' || e.type === 'click'){
             if(id.current.value.length > 0 && pw.current.value.length > 0){
                 if(!props.LogIn(id.current.value, pw.current.value)){
                     alert('회원정보가 존재하지 않습니다.');

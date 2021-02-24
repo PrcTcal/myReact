@@ -7,7 +7,7 @@ function Register(props){
     const pw = useRef();
 
     const handleRegister = e => {
-        if(e.key === 'Enter'){
+        if(e.key === 'Enter' || e.type === 'click'){
             if(id.current.value.length > 0 && email.current.value.length > 0 && pw.current.value.length > 0){
                 const code = props.Register(id.current.value, email.current.value, pw.current.value);
                 if(code === 0){

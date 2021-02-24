@@ -1,5 +1,7 @@
-import {Component} from 'react';
-import logo from './logo.svg';
+import { Component } from 'react';
+import logo from '../logo.svg';
+import { Link } from 'react-router-dom';
+
 
 class UserInfo extends Component{
     constructor(props){
@@ -22,7 +24,9 @@ class UserInfo extends Component{
                         <h2>{this.props.email}</h2>
                     </div>
                     <div className="button-fields">
-                        <button className="btn">내 정보</button>
+                        <Link to="/info">
+                            <button className="btn">내 정보</button>
+                        </Link>
                         <button className="btn" onClick={this.handleClick}>로그아웃</button>
                     </div>
 
