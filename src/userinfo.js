@@ -21,7 +21,7 @@ class UserInfo extends Component{
                         <h1>{this.props.id}</h1>
                         <h2>{this.props.email}</h2>
                     </div>
-                    <div>
+                    <div className="button-fields">
                         <button className="btn">내 정보</button>
                         <button className="btn" onClick={this.handleClick}>로그아웃</button>
                     </div>

@@ -1,5 +1,4 @@
-import ReactDOM from 'react-dom';
-import react, {Component} from 'react';
+import {Component} from 'react';
 
 class Clock extends Component{
     constructor(props){
