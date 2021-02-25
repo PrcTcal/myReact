@@ -273,3 +273,48 @@ a:visited { text-decoration: none; color:#000;}
 
 /************************************* userinfo **********************************************/
 
+.progress {
+  position:relative;
+  width:1000px;
+  height:20px;
+  border:2px solid cornflowerblue;
+  background-color: #fff;
+}
+
+.bar {
+  height:20px;
+  background-color:cornflowerblue;
+  transition:0.5s all ease;
+}
+
+.stick {
+  position:absolute;
+  top:0;
+  z-index:10;
+  width:2px;
+  height:20px;
+  background-color:#fff;
+}
+
+.progress > div.stick:nth-child(2) { left:100px; }
+.progress > div.stick:nth-child(3) { left:200px; }
+.progress > div.stick:nth-child(4) { left:300px; }
+.progress > div.stick:nth-child(5) { left:400px; }
+.progress > div.stick:nth-child(6) { left:500px; }
+.progress > div.stick:nth-child(7) { left:600px; }
+.progress > div.stick:nth-child(8) { left:700px; }
+.progress > div.stick:nth-child(9) { left:800px; }
+.progress > div.stick:nth-child(10) { left:900px; }
+
+.fileList { list-style:none; width:1000px; display:flex; justify-content: space-evenly; padding:0; margin-left:30px;}
+.fileList li {
+  background-color: #fff;
+  color:black;
+  font-size:10px;
+  box-shadow: 0 0 30px 5px #fff;
+  margin-left:50px;
+  padding: 5px;
+  float: left;
+  border-radius: 7px;
+  transition: 0.3s all ease;
+}

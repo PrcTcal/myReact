@@ -3,6 +3,7 @@ import UserInfo from './userinfo';
 import Login from './login';
 import Register from './register';
 
+
 class LoginControl extends Component{
     constructor(props){
         super(props);
@@ -74,20 +75,18 @@ class LoginControl extends Component{
                     return resolve(true);
                 }
             });
-            /*
-            this.state.user.forEach(user => {
-                if(user.id === id && user.pw === pw) {
-                    user.login = true;
-                    this.setState({isLoggedIn: true});
-                    this.setState({registerClicked : false});
-                    check = true;
-                }
-            });
-            */
         });
     }
     
     LogOut(){
+        fetch('/migration/export', {
+            method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+        }).then(res => res.json())
+        .then(res => console.log(res));
         this.setState({
             isLoggedIn: false,
             user: {

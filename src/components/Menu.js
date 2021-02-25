@@ -15,6 +15,9 @@ const Menu = () => {
                 <li><NavLink to="/posts" activeStyle={activeStyle}>Posts</NavLink></li>
                 <li><NavLink to="/home">React Home</NavLink></li>
             </ul>
+            <ul>
+                <li><NavLink to="/migration" activeStyle={activeStyle}>Migration</NavLink></li>
+            </ul>
         </div>
     );
 };

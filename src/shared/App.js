@@ -2,38 +2,16 @@ import React, {Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Home, About, Posts } from '../pages';
 import { Menu } from '../components';
-import { LoginControl, Info, Clock } from '../lib';
+import { LoginControl, Info, Clock, Migration } from '../lib';
 import logo from '../logo.svg';
 import '../App.css';
+import io from 'socket.io-client';
+const socket = io.connect("http://localhost:3001");
 
 class App extends Component {
-    /*
     componentDidMount(){
-        fetch('/api', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(data => { 
-                this.setState({username: data.username}); 
-                console.log(this.state.username) 
-            });
-            fetch('/api/group', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => { 
-                    this.setState({username: data.username}); 
-                    console.log(this.state.username) 
-                });
+        socket.emit("box", "hello");
     }
-    */
-
     render() {
         return (
             <div className="App">
@@ -50,6 +28,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/home" component={LoginControl}/>
                         <Route exact path="/info" component={Info}/>
+                        <Route exact path="/migration" component={Migration}/>
                     </Switch>
                 </header>
             </div>
