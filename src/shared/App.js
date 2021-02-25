@@ -7,6 +7,33 @@ import logo from '../logo.svg';
 import '../App.css';
 
 class App extends Component {
+    /*
+    componentDidMount(){
+        fetch('/api', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => { 
+                this.setState({username: data.username}); 
+                console.log(this.state.username) 
+            });
+            fetch('/api/group', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => { 
+                    this.setState({username: data.username}); 
+                    console.log(this.state.username) 
+                });
+    }
+    */
+
     render() {
         return (
             <div className="App">

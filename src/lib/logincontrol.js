@@ -9,14 +9,12 @@ class LoginControl extends Component{
         this.state = {
             registerClicked: false,
             isLoggedIn: false,
-            user: [
-                {
-                    id: 'asd',
-                    email: 'asd@naver.com',
-                    pw: 'qwe',
-                    login: false
-                }
-            ]
+            user: {
+                id: '',
+                email: '',
+                pw: '',
+            }
+            
         }
         this.LogIn = this.LogIn.bind(this);
         this.LogOut = this.LogOut.bind(this);
@@ -25,25 +23,24 @@ class LoginControl extends Component{
     }
 
     Register(id, email, pw){
-        let registerCode = 0;
-        this.state.user.forEach(user => {
-            if(user.id === id){
-                registerCode = 1;
-            } else if(user.email === email){
-                registerCode = 2;
-            }
-        });
-        if(registerCode === 0){
-            this.setState({
-                user: this.state.user.concat({
-                    id: id,
-                    email: email,
-                    pw: pw,
-                    login: false
+        return new Promise((resolve, reject) => {
+            fetch('/login/reg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id, 
+                    email: email, 
+                    pw: pw
                 })
+            }).then(res => res.json())
+            .then(res => {
+                console.log(res);
+                return resolve(res.result);
             });
-        }
-        return registerCode;
+        });
     }
 
     handleRegisterClick(val){
@@ -51,27 +48,60 @@ class LoginControl extends Component{
     }
 
     LogIn(id, pw){
-        let check = false;
-        this.state.user.forEach(user => {
-            if(user.id === id && user.pw === pw) {
-                user.login = true;
-                this.setState({isLoggedIn: true});
-                this.setState({registerClicked : false});
-                check = true;
-            }
+        return new Promise((resolve, reject) => {
+            fetch('/login/valid', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    pw: pw
+                })
+            }).then(res => res.json())
+            .then(res => {
+                if(res.result != null){
+                    this.setState({
+                        isLoggedIn: true,
+                        registerClicked: false,
+                        user: {
+                            id: res.result.userid,
+                            email: res.result.email,
+                            pw: res.result.pw
+                        }
+                    });
+                    return resolve(true);
+                }
+            });
+            /*
+            this.state.user.forEach(user => {
+                if(user.id === id && user.pw === pw) {
+                    user.login = true;
+                    this.setState({isLoggedIn: true});
+                    this.setState({registerClicked : false});
+                    check = true;
+                }
+            });
+            */
         });
-        return check;
     }
     
     LogOut(){
-        this.setState({isLoggedIn: false});
-        this.state.user.filter(user => user.login === true).map(user => user.login = false);
+        this.setState({
+            isLoggedIn: false,
+            user: {
+                id: '',
+                email: '',
+                pw: ''
+            }
+        });
     }
 
     render(){
         return(
             <div className="login-container">
-                {this.state.isLoggedIn ? this.state.user.filter(user => user.login === true).map(user => <UserInfo id={user.id} email={user.email} LogOut={this.LogOut}/>) : 
+                {this.state.isLoggedIn ? <UserInfo id={this.state.user.id} email={this.state.user.email} LogOut={this.LogOut}/> : 
                 this.state.registerClicked ? <Register Register={this.Register} handleRegisterClick={this.handleRegisterClick}/> : <Login LogIn={this.LogIn} handleRegisterClick={this.handleRegisterClick}/>}
             </div>
         );

@@ -6,10 +6,10 @@ function Register(props){
     const email = useRef();
     const pw = useRef();
 
-    const handleRegister = e => {
+    const handleRegister = async e => {
         if(e.key === 'Enter' || e.type === 'click'){
             if(id.current.value.length > 0 && email.current.value.length > 0 && pw.current.value.length > 0){
-                const code = props.Register(id.current.value, email.current.value, pw.current.value);
+                const code = await props.Register(id.current.value, email.current.value, pw.current.value);
                 if(code === 0){
                     alert('가입되었습니다!');
                     props.handleRegisterClick(false);
