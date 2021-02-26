@@ -79,14 +79,6 @@ class LoginControl extends Component{
     }
     
     LogOut(){
-        fetch('/migration/export', {
-            method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-        }).then(res => res.json())
-        .then(res => console.log(res));
         this.setState({
             isLoggedIn: false,
             user: {

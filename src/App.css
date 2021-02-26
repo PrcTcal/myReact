@@ -44,9 +44,12 @@
 
 /************************************* components **********************************************/
 
-.menu { margin: 0 0 40px 0; }
+.menu { margin: 0 0 40px 0; display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .menu ul {
   list-style: none;
+  margin: 10px 0;
+  height:50px;
+  padding:0;
 }
 .menu ul li {
   background-color: #fff;
@@ -271,7 +274,7 @@ a:visited { text-decoration: none; color:#000;}
 
 .info .profile-img { width:100px; height:100px; }
 
-/************************************* userinfo **********************************************/
+/************************************* migration **********************************************/
 
 .progress {
   position:relative;
@@ -306,15 +309,78 @@ a:visited { text-decoration: none; color:#000;}
 .progress > div.stick:nth-child(9) { left:800px; }
 .progress > div.stick:nth-child(10) { left:900px; }
 
-.fileList { list-style:none; width:1000px; display:flex; justify-content: space-evenly; padding:0; margin-left:30px;}
-.fileList li {
+.fileList { list-style:none; display:flex; justify-content: space-evenly; padding:0; margin-left:30px;}
+.exp-li li {
   background-color: #fff;
   color:black;
   font-size:10px;
-  box-shadow: 0 0 30px 5px #fff;
-  margin-left:50px;
-  padding: 5px;
   float: left;
   border-radius: 7px;
   transition: 0.3s all ease;
 }
+.imp-li li { font-size: 15px; background-color:#fff; border-radius: 10px;}
+.exp-li li { box-shadow: 0 0 30px 5px #fff; margin-left: 50px; padding: 5px; }
+.imp-li li { box-shadow: 0 0 10px 2px #fff; margin: 10px 10px; }
+.flex-row {
+  display:flex;
+  width:800px;
+  height: 400px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.progress-box { 
+  background:#000;
+  border-radius: 10px;
+  transition: 0.3s all ease;
+  overflow:hidden;
+  display:flex;
+}
+.progress-src {
+  width: 300px;
+  height:150px;
+}
+
+.percentage-text { 
+  position: absolute;
+  display:flex;
+  text-align:center;
+  justify-content: center;
+  align-items: center;
+  font-weight:800;
+  mix-blend-mode:difference;
+}
+.src-percent { width:50px; height:25px;}
+.dest-percent { width:150px; height:150px;}
+.source-box {
+  width: 50px;
+  height: 25px;
+  flex-direction: row-reverse;
+}
+.dest-box {
+  width: 150px;
+  height: 150px;
+  flex-direction: column-reverse;
+}
+
+.source { height:25px; background: #fff; transition: 0.3s all ease; }
+.dest { width: 150px; background: #fff; transition: 0.3s all ease; }
+
+.arrow { width: 150px; height: 150px; overflow:hidden; position:relative; display:flex; align-items: center;}
+.arrow svg{ 
+  position:absolute;
+  transition: 0.2s all ease;
+  animation: charging infinite 2s linear;
+}
+
+@keyframes charging {
+  0%{
+    transform:translateX(-100px);
+  }
+  100%{
+    transform:translateX(140px);
+  }
+}
+
+.w1000{ width:1000px; }
+.w300{ width:300px;}

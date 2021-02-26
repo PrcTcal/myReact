@@ -1,5 +1,5 @@
 const express = require('express');
-//const app = express();
+const app = express();
 const cors = require('cors');
 const server = require('http').createServer(express);
 const io = require('socket.io')(server,  {
@@ -14,13 +14,13 @@ const migration = require('./routes/migration');
 const Mongoose = require('mongoose');
 const config = require('./config/config');
 const ProgressBar = require('progress');
+const fs = require('fs');
 
 
-/*
+
 app.use(bodyParser.json());
 app.use('/login', loginRoute);
-app.use('/migration', migrationRoute);
-*/
+
 io.on('connection', (socket) => {
     console.log('connection success');
     socket.on('box', function(data){
@@ -34,17 +34,32 @@ io.on('connection', (socket) => {
             incomplete: ' ',
             width: 50
         });
-        migration('test01-music', bar, socket);
-        
+        migration.exportData('test01-music', bar, socket);
+    });
+
+    socket.on('import', async function(data){
+        for(let i = 0 ; i < 10 ; i++){
+            const bar = new ProgressBar(`importing export${i}.json - [:bar] [:percent] :etas`, {
+                total:100,
+                complete: '=',
+                incomplete: ' ',
+                width: 50
+            });
+            await migration.importData('test01-music2', JSON.parse(fs.readFileSync(`./tempData/export${i}.json`, {encoding: "utf8"})), i, bar, socket);
+        }
     })
 });
 
-server.listen(port, () => {
+app.listen(port+1, () => {
     // MongoDB 연결
     Mongoose.connect(config.mongo_local_config, config.mongo_config)
     .then(() => console.log('Successfully connected to MongoDB'))
     .catch(e => console.error(e));
     Mongoose.Promise = global.Promise;
     console.log('DB : MongoDB');
-    console.log(`express is running on ${port}`);
+    console.log(`http server is running on ${port+1}`);
+})
+
+server.listen(port, () => {
+    console.log(`http server is running on ${port}`);
 });
